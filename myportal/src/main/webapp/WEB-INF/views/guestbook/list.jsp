@@ -41,9 +41,9 @@
 				<c:forEach items="${list}" var="vo">
 				<table width=510 border=1>
 					<tr>
-						<td>[{${vo.no}]</td>
-						<td>{${vo.name}</td>
-						<td>{${vo.regDate}</td>
+						<td>[${vo.no}]</td>
+						<td>${vo.name}</td>
+						<td>${vo.regDate}</td>
 						<td>
 							<!-- 수정 -->
 							<a href="<c:url value="/guestbook/delete/${vo.no }" />">
