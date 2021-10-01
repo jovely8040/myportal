@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 @Repository
 public class BoardDaoImpl implements BoardDao {
 	@Autowired
@@ -12,8 +13,8 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<BoardVo> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<BoardVo> list = sqlSession.selectList("board.selectAll");
+		return list;
 	}
 
 	@Override
