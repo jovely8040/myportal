@@ -29,9 +29,27 @@ public class UsersController {
 	
 	@Autowired
 	private UserService userServiceImpl;
+	
+	@RequestMapping(value="/update", method = RequestMethod.GET)
+	public String updateForm() {
+		return "/users/updateform";
+	}
 
-	@RequestMapping(value={"", "/", "/join"}, 
-			method=RequestMethod.GET)
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public String update(@ModelAttribute UserVo vo, HttpSession session) {
+
+		int updatedCount = userServiceImpl.updateUser(vo);
+
+		if(updatedCount == 1) {
+			session.invalidate();
+		} else {
+			System.out.println("UPDATE 실패!");
+		}
+
+		return "redirect:/";
+	}
+
+	@RequestMapping(value={"", "/", "/join"}, method=RequestMethod.GET)
 	public String joinForm() {
 		// 로그 레벨에 따라 메서드가 마련
 		logger.debug("회원가입폼");
