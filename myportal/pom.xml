@@ -8,7 +8,6 @@
   <properties>
   	<org.springframework-version>5.3.10</org.springframework-version>
   </properties>
-  
   <build>
     <plugins>
       <plugin>
@@ -57,7 +56,7 @@
 	    <artifactId>spring-web</artifactId>
 	    <version>${org.springframework-version}</version>
 	</dependency>
-
+	
 	<!-- Spring WebMVC -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
@@ -80,14 +79,14 @@
 	    <artifactId>spring-jdbc</artifactId>
 	    <version>${org.springframework-version}</version>
 	</dependency>
-
+	
 	<!-- Oracle Driver -->
 	<dependency>
 		<groupId>oracle</groupId>
 		<artifactId>ojdbc6</artifactId>
 		<version>11.2.0.3</version>
 	</dependency>
-
+	
 	<!-- MyBatis -->
 	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 	<dependency>
@@ -95,7 +94,6 @@
 	    <artifactId>mybatis</artifactId>
 	    <version>3.5.7</version>
 	</dependency>
-
 	<!-- MyBatis Spring -->		
 	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 	<dependency>
@@ -103,7 +101,7 @@
 	    <artifactId>mybatis-spring</artifactId>
 	    <version>2.0.6</version>
 	</dependency>
-	
+		
 	<!-- Jackson -->
 	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 	<dependency>
@@ -111,7 +109,7 @@
 	    <artifactId>jackson-databind</artifactId>
 	    <version>2.12.5</version>
 	</dependency>
-	
+
 	<!-- JCL-over-SLF4J -->
 	<!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
 	<dependency>
@@ -119,7 +117,7 @@
 	    <artifactId>jcl-over-slf4j</artifactId>
 	    <version>1.7.32</version>
 	</dependency>
-	
+
 	<!-- Logback -->
 	<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
 	<dependency>
@@ -144,7 +142,7 @@
 	    <artifactId>hibernate-validator</artifactId>
 	    <version>6.0.13.Final</version>
 	</dependency>
-	
+
   </dependencies>
-  
+    
 </project>
