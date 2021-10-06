@@ -13,7 +13,7 @@
 				<c:otherwise>
 				
 				<!-- 로그인 했을 때 -->
-				<li><a href="<c:url value="/user/update" />">회원정보수정</a></li>
+				<li><a href="<c:url value="/users/update" />">회원정보수정</a></li>
 				<li><a href="<c:url value="/users/logout" />">로그아웃</a></li>
 				<li>${authUser.getName() } 님 안녕하세요 ^^;</li>
 				</c:otherwise>
