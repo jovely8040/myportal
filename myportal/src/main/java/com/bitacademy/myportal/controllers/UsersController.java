@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-//import javax.validation.Valid;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -152,19 +154,36 @@ public class UsersController {
 	}
 	
 	//	이메일 중복 체크(JSON API)
-	@ResponseBody //	MessageConverter 통과
-	@RequestMapping("/emailcheck")
-	public Object exists(@RequestParam(value="email", 
-										required=true, 
-										defaultValue="") String email) {
-		UserVo vo = userServiceImpl.getUser(email);
-		//	vo == null이면 중복 이메일이 없다
-		boolean exists = vo != null ? true: false;	//	중복 여부
-
-		Map<String, Object> map = new HashMap<>();
-		map.put("result", "success");
-		map.put("data", exists);
-
-		return map;
+//	@ResponseBody //	MessageConverter 통과
+//	@RequestMapping("/emailcheck")
+//	public Object exists(@RequestParam(value="email", 
+//										required=true, 
+//										defaultValue="") String email) {
+//		UserVo vo = userServiceImpl.getUser(email);
+//		//	vo == null이면 중복 이메일이 없다
+//		boolean exists = vo != null ? true: false;	//	중복 여부
+//
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("result", "success");
+//		map.put("data", exists);
+//
+//		return map;
+//	}
+	
+	@RequestMapping(value = "/emailcheck", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> emailCheck(@RequestBody Map<String, String> json) {
+		String email = json.get("email");
+		Map<String, Boolean> resultMap = new HashMap<String, Boolean>();
+		UserVo returnedVo = userServiceImpl.getUser(email);
+		resultMap.put("result", returnedVo != null);
+		return resultMap;
+	}
+	
+	@ExceptionHandler(UserDaoException.class)
+	public String handlerUserDaoException(UserDaoException e, Model model) {
+		model.addAttribute("name", e.getClass().getSimpleName());
+		model.addAttribute("message", e.getMessage());
+		return "errors/exception";
 	}
 }
